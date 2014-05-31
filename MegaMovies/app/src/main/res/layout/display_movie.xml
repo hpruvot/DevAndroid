@@ -1,169 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/movie_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/movie_title"
         style="@style/movie_style"/>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/android_picture"
-            android:layout_width="200sp"
-            android:layout_height="300sp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/avatar_poster" />
-        <LinearLayout
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_date"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView1" />
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_date_text"
-                android:layout_below="@+id/textView2"
-                style="@style/movie_subtitle_style"/>
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_director"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView3" />
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_director_text"
-                style="@style/movie_subtitle_style"
-                android:layout_below="@+id/textView4" />
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_type"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView5" />
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_type_text"
-                style="@style/movie_subtitle_style"
-                android:layout_below="@+id/textView6" />
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_nationality"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView7" />
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_nationality_text"
-                style="@style/movie_subtitle_style"
-                android:layout_below="@+id/textView8" />
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_last"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView9" />
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_last_text"
-                style="@style/movie_subtitle_style"
-                android:layout_below="@+id/textView10" />
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_subtitles"
-                style="@style/movie_title_style"
-                android:layout_below="@+id/textView11" />
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_subtitles_text"
-                style="@style/movie_subtitle_style"
-                android:layout_below="@+id/textView12" />
-        </LinearLayout>
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/movie_title">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_below="@+id/android_picture">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/movie_image"
+                    android:layout_width="200sp"
+                    android:layout_height="300sp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/avatar_poster"
+                    android:layout_marginRight="10dp"/>
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_date"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_year"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_date_text"
+                        style="@style/movie_subtitle_style"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_director"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_realisator"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_director_text"
+                        style="@style/movie_subtitle_style"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_type"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_gender"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_type_text"
+                        style="@style/movie_subtitle_style"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_nationality"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_nationality"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_nationality_text"
+                        style="@style/movie_subtitle_style"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_last"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_length"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_last_text"
+                        style="@style/movie_subtitle_style"/>
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_subtitles"
+                        style="@style/movie_title_style"/>
+                    <TextView
+                        android:id="@+id/movie_subtitles"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/movie_subtitles_text"
+                        style="@style/movie_subtitle_style" />
+                </LinearLayout>
+            </LinearLayout>
             <TextView
-                android:id="@+id/textView14"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/movie_synopsis"
-                style="@style/movie_synopsis_style"
-                android:layout_below="@+id/textView13" />
+                style="@style/movie_title_style" />
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/movie_synopsis"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/movie_synopsis_text"
-                style="@style/movie_synopsis_text_style"
-                android:layout_below="@+id/textView14" />
-        </LinearLayout>
-        <Button
-            android:id="@+id/button"
-            android:layout_width="200sp"
-            android:layout_height="wrap_content"
-            android:text="@string/movie_look"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/watchbutton"
-            android:layout_centerHorizontal="true"
-            style="@style/look_button_style"/>
-    </RelativeLayout>
+                android:text="@string/movie_synopsis_text"/>
 
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="fill_parent"
+            <Button
+                android:id="@+id/movie_button"
+                android:layout_width="200sp"
                 android:layout_height="wrap_content"
-                android:text="@string/movie_synopsis"
-                android:layout_below="@+id/textView13" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_synopsis_text"
-                android:layout_below="@+id/textView14" />
+                android:text="@string/movie_look"
+                android:background="@drawable/watchbutton"
+                android:layout_marginTop="10dp"
+                style="@style/look_button_style"/>
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

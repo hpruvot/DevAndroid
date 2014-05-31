@@ -10,6 +10,17 @@
     android:orientation="vertical"
     tools:context="com.example.megamovies.app.MainActivity">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
     <GridView
         android:id="@+id/listofmovies"
         android:layout_width="fill_parent"
