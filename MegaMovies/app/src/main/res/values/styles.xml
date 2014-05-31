@@ -1,0 +1,59 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+    </style>
+
+    <style name="movie_style">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">26.67sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="movie_subtitle_style">
+        <item name="android:gravity">left</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">13.33sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">OpenSans</item>
+        <item name="android:layout_marginBottom">10.00sp</item>
+    </style>
+    <style name="movie_title_style" parent="movie_subtitle_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginBottom">0sp</item>
+    </style>
+    <style name="movie_synopsis_style">
+        <item name="android:gravity">left</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">13.33sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:layout_marginLeft">20.00sp</item>
+    </style>
+    <style name="movie_synopsis_text_style">
+        <item name="android:gravity">left</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">13.33sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:layout_marginLeft">20.00sp</item>
+    </style>
+
+    <style name="look_button_style">
+        <item name="android:layout_width">200sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginBottom">22.00sp</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MegaMovies</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="movie_title">Avatar</string>
+    <string name="movie_date">Date de sortie</string>
+    <string name="movie_date_text">16 décembre 2009</string>
+    <string name="movie_director">Réalisé par</string>
+    <string name="movie_director_text">James Cameron</string>
+    <string name="movie_type">Genre</string>
+    <string name="movie_type_text">Science-fiction</string>
+    <string name="movie_nationality">Nationalité</string>
+    <string name="movie_nationality_text">Américain</string>
+    <string name="movie_last">Durée</string>
+    <string name="movie_last_text">162 min</string>
+    <string name="movie_subtitles">Sous-titre</string>
+    <string name="movie_subtitles_text">fr - de - it - an</string>
+    <string name="movie_synopsis">Synopsis</string>
+    <string name="movie_synopsis_text">Malgré sa paralysie, Jake Sully, un ancien marine immobilisé dans un fauteuil roulant, est resté un combattant au plus profond de son être. Il est recruté pour se rendre à des années-lumière de la Terre, sur Pandora, où de puissants groupes industriels exploitent un minerai rarissime destiné à résoudre la crise énergétique sur Terre. Parce que l\'atmosphère de Pandora est toxique pour les humains, ceux-ci ont créé le Programme Avatar, qui permet à des " pilotes " humains de lier leur esprit à un avatar, un corps biologique commandé à distance, capable de survivre dans cette atmosphère létale. Ces avatars sont des hybrides créés génétiquement en croisant l\'ADN humain avec celui des Na\'vi, les autochtones de Pandora...</string>
+    <string name="movie_look">Regarder</string>
+
+    <string name="action_settings">Settings</string>
+
+</resources>
