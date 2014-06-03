@@ -1,4 +1,4 @@
-package com.example.megamovies.app;
+package com.example.megamovies.app.model;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -16,12 +16,13 @@ public class Provider extends ContentProvider {
 
 	private static final String authority = "com.example.megamovies.provider";
 
-	protected static final String uriMovies = "content://"+authority+"/movies";
-    protected static final String uriMovieID = "content://"+authority+"/movie";
-	private static final String uriMovieAdd = "content://"+authority+"/movie/add";
-	protected static final String uriSearch = "content://"+authority+"/search";
+    public static final String uriMovies = "content://"+authority+"/movies";
+    public static final String uriMovieID = "content://"+authority+"/movie";
+    public static final String uriMovieAdd = "content://"+authority+"/movie/add";
+    public static final String uriSearch = "content://"+authority+"/search";
 
-	public static final Uri CONTENT_URI_MOVIES = Uri.parse(uriMovies);
+    public static final Uri CONTENT_URI_MOVIES = Uri.parse(uriMovies);
+    public static final Uri CONTENT_URI_MOVIE_ID = Uri.parse(uriMovieID);
 	public static final Uri CONTENT_URI_MOVIE_ADD = Uri.parse(uriMovieAdd);
 	public static final Uri CONTENT_URI_SEARCH = Uri.parse(uriSearch);
 	
@@ -44,68 +45,38 @@ public class Provider extends ContentProvider {
 	}
 	
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
-    }
-/*		Log.i("Provider", "delete()");
+		Log.i("Provider", "delete()");
 		int ret = 0;
 		int id = 0;
 		switch (uriMatcher.match(uri)) {
-			case CONTACT_ID:
-				Log.i("Provider", "CONTACT_ID");
+			case MOVIE_ID:
+				Log.i("Provider", "MOVIE_ID");
 				try {
 					id = Integer.parseInt(uri.getPathSegments().get(1));
-					ret = (int) mDb.delete(DB.Contact.TABLE_NAME, "id = " + id, null);
-					getContext().getContentResolver().notifyChange(CONTENT_URI_CONTACT, null);
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-				break;
-			case CONTACT_ADRESSE:
-				Log.i("Provider", "CONTACT_ADRESSE");
-				try {
-					id = Integer.parseInt(uri.getPathSegments().get(1));
-					ret = (int) mDb.delete(DB.Adresse.TABLE_NAME, "id = " + id, null);
-					getContext().getContentResolver().notifyChange(CONTENT_URI_ADRESSE, null);
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-				break;
-			case CONTACT_MAIL:
-				Log.i("Provider", "CONTACT_MAIL");
-				try {
-					id = Integer.parseInt(uri.getPathSegments().get(1));
-					ret = (int) mDb.delete(DB.Mail.TABLE_NAME, "id = " + id, null);
-					getContext().getContentResolver().notifyChange(CONTENT_URI_MAIL, null);
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-				break;
-			case CONTACT_NUMERO:
-				Log.i("Provider", "CONTACT_NUMERO");
-				try {
-					id = Integer.parseInt(uri.getPathSegments().get(1));
-					ret = (int) mDb.delete(DB.Numero.TABLE_NAME, "id = " + id, null);
-					getContext().getContentResolver().notifyChange(CONTENT_URI_NUMERO, null);
+					ret = (int) mDb.delete(DB.Film.TABLE_NAME, "id = " + id, null);
+                    getContext().getContentResolver().notifyChange(CONTENT_URI_MOVIE_ID, null);
+                    getContext().getContentResolver().notifyChange(CONTENT_URI_MOVIES, null);
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
 				break;
 			default:
-				throw new IllegalArgumentException("URI non support�e : "+uri);
+				throw new IllegalArgumentException("URI non supportee : "+uri);
 		}
 		return ret;
 	}
-*/
+
 	public Uri insert(Uri uri, ContentValues cont) {
 		Log.i("Provider", "insert()");
 		long id = 0;
 		switch (uriMatcher.match(uri)) {
 			case MOVIE_ADD:
-				Log.i("Provider", "CONTACT:");
+				Log.i("Provider", "MOVIE:");
 				id = mDb.insert(DB.Film.TABLE_NAME, null, cont);
 				if (id>0) {
 					Uri geturi = ContentUris.withAppendedId(CONTENT_URI_MOVIES, id);
 					getContext().getContentResolver().notifyChange(uri,  null);
+                    getContext().getContentResolver().notifyChange(CONTENT_URI_MOVIES, null);
 					Log.i("Provider", "Movie added : "+id);
 					return geturi;
 				}
@@ -130,14 +101,14 @@ public class Provider extends ContentProvider {
 		switch (uriMatcher.match(uri)) {
 			case MOVIE_ID:
 				Log.i("Provider", "case MOVIE_ID:");
-				// Recupere l'index du contact.
+				// Recupere l'index du film.
 				try { 
 					id = Integer.parseInt(uri.getPathSegments().get(1));
 				} catch (Exception ex) {
 					System.out.println(ex.getMessage());
 					return null;
 				}
-				// Recupere le curseur contenant le contact.
+				// Recupere le curseur contenant le film.
 				ret = mDb.rawQuery("SELECT * FROM " + DB.Film.TABLE_NAME + " WHERE " + DB.Film.ID +
 						" = ?", new String[] {String.valueOf(id)});
 				// Enregistre le ContentResolver de facon a ce qu'il soit notifie si
@@ -175,37 +146,21 @@ public class Provider extends ContentProvider {
 	}
 
 	public int update(Uri uri, ContentValues cont, String condition, String[] conditionArgs) {
-        return 0;
-    }
-/*		Log.i("Provider", "update()");
+		Log.i("Provider", "update()");
 		int ret = 0;
 		String id = "";
 		switch (uriMatcher.match(uri)) {
-		case CONTACT_ID:
+		case MOVIE_ID:
 			id = uri.getPathSegments().get(1);
-			ret = mDb.update(DB.Contact.TABLE_NAME, cont, "id" + " = " + id, null);
-			getContext().getContentResolver().notifyChange(CONTENT_URI_CONTACT, null);
-			break;
-		case CONTACT_ADRESSE:
-			id = uri.getPathSegments().get(1);
-			ret = mDb.update(DB.Adresse.TABLE_NAME, cont, "id" + " = " + id, null);
-			getContext().getContentResolver().notifyChange(CONTENT_URI_ADRESSE, null);
-			break;
-		case CONTACT_MAIL:
-			id = uri.getPathSegments().get(1);
-			ret = mDb.update(DB.Mail.TABLE_NAME, cont, "id" + " = " + id, null);
-			getContext().getContentResolver().notifyChange(CONTENT_URI_MAIL, null);
-			break;
-		case CONTACT_NUMERO:
-			id = uri.getPathSegments().get(1);
-			ret = mDb.update(DB.Numero.TABLE_NAME, cont, "id" + " = " + id, null);
-			getContext().getContentResolver().notifyChange(CONTENT_URI_NUMERO, null);
+			ret = mDb.update(DB.Film.TABLE_NAME, cont, "id" + " = " + id, null);
+			getContext().getContentResolver().notifyChange(CONTENT_URI_MOVIE_ID, null);
+            getContext().getContentResolver().notifyChange(CONTENT_URI_MOVIES, null);
 			break;
 		default:
-			throw new IllegalArgumentException("URI non support�e : "+uri);
+			throw new IllegalArgumentException("URI non supportee : "+uri);
 		}
 		return ret;
-	}*/
+	}
 	
 	public String getType(Uri uri) {
 		Log.i("Provider", "getType()");

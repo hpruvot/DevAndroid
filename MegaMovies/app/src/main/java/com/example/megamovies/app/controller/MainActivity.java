@@ -1,4 +1,4 @@
-package com.example.megamovies.app;
+package com.example.megamovies.app.controller;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -6,10 +6,13 @@ import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -18,6 +21,10 @@ import android.widget.FilterQueryProvider;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
+
+import com.example.megamovies.app.R;
+import com.example.megamovies.app.model.DB;
+import com.example.megamovies.app.model.Provider;
 
 
 public class MainActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -34,18 +41,18 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.checkFirstUse();
+
         // On desactive la sortie du clavier
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        //Récupération de la gridview créée dans le fichier main.xml
+        //Récupération de la gridview créée dans le fichier display_menu.xmlmenu.xml
         listMovies = (GridView) findViewById(R.id.listofmovies);
-
-        this.addMovies();
 
         // Listener pour la liste
         AdapterView.OnItemClickListener moviesListener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, DisplayMovie.class);
+                Intent intent = new Intent(MainActivity.this, DisplayMovieActivity.class);
                 intent.putExtra(ID, id);
                 startActivity(intent);
             }
@@ -111,48 +118,89 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
     }
 
 
-    private void addMovies() {
-        /*
-        map.put("titre", "Avatar");
-        map.put("genre", "Science-fiction");
-        map.put("img", String.valueOf(R.drawable.list_avatar));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        map.put("titre", "Django");
-        map.put("genre", "Western");
-        map.put("img", String.valueOf(R.drawable.list_django));
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.list_menu, menu);
+        return true;
+    }
 
-        map.put("titre", "Forrest Gump");
-        map.put("genre", "Comédie, Romance");
-        map.put("img", String.valueOf(R.drawable.list_forrestgump));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_add) {
+            Intent intent = new Intent(MainActivity.this, AddEditMovieActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        map.put("titre", "Gran Torino");
-        map.put("genre", "Drame, Thriller");
-        map.put("img", String.valueOf(R.drawable.list_grantorino));
+    private void checkFirstUse() {
+        final String PREFS_NAME = "MyPrefsFile";
 
-        map.put("titre", "Intouchables");
-        map.put("genre", "Comédie");
-        map.put("img", String.valueOf(R.drawable.list_intouchables));
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        map.put("titre", "The dark knight rises");
-        map.put("genre", "Action, Thriller");
-        map.put("img", String.valueOf(R.drawable.list_thedarkknightrises));
+        if (settings.getBoolean("my_first_time", true)) {
+            this.addMovies();
+            settings.edit().putBoolean("my_first_time", false).commit();
+        }
+    }
 
-        map.put("titre", "Pulp Fiction");
-        map.put("genre", "Policier, Thriller");
-        map.put("img", String.valueOf(R.drawable.list_pulpfiction));
-        listItem.add(map);
 
-        map = new HashMap<String, String>();
-        map.put("titre", "Fight Club");
-        map.put("genre", "Thriller, Drame");
-        map.put("img", String.valueOf(R.drawable.list_fightclub));*/
-
+    public void addMovies () {
         ContentValues movie = new ContentValues();
-        movie.put(DB.Film.TITLE, "Le seigneur des anneaux");
+        movie.put(DB.Film.TITLE, "Fight Club");
+        movie.put(DB.Film.GENDER, "Thriller, Drame");
+        movie.put(DB.Film.IMAGE, R.drawable.list_fightclub);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Pulp Fiction");
+        movie.put(DB.Film.GENDER, "Policier, Thriller");
+        movie.put(DB.Film.IMAGE, R.drawable.list_pulpfiction);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "The dark knight rises");
+        movie.put(DB.Film.GENDER, "Action, Thriller");
+        movie.put(DB.Film.IMAGE, R.drawable.list_thedarkknightrises);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Intouchables");
+        movie.put(DB.Film.GENDER, "Comédie");
+        movie.put(DB.Film.IMAGE, R.drawable.list_intouchables);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Gran Torino");
+        movie.put(DB.Film.GENDER, "Drame, Thriller");
+        movie.put(DB.Film.IMAGE, R.drawable.list_grantorino);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Forrest Gump");
         movie.put(DB.Film.GENDER, "Fantastique, Action");
+        movie.put(DB.Film.IMAGE, R.drawable.list_forrestgump);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Django");
+        movie.put(DB.Film.GENDER, "Western");
+        movie.put(DB.Film.IMAGE, R.drawable.list_django);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Avatar");
+        movie.put(DB.Film.GENDER, "Science-fiction");
+        movie.put(DB.Film.IMAGE, R.drawable.list_avatar);
+        this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
+
+        movie.put(DB.Film.TITLE, "Le seigneur des anneaux");
+        movie.put(DB.Film.GENDER, "Comédie, Romance");
         movie.put(DB.Film.IMAGE, R.drawable.list_leseigneurdesanneaux);
         this.getContentResolver().insert(Provider.CONTENT_URI_MOVIE_ADD, movie);
     }
+
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {

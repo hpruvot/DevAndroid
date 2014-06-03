@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.megamovies.app.MainActivity"
+            android:name=".controller.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -18,17 +18,22 @@
             </intent-filter>
         </activity>
         <activity class=".DisplayMovie"
-            android:name="com.example.megamovies.app.DisplayMovie"
+            android:name=".controller.DisplayMovieActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.DISPLAY" />
             </intent-filter>
         </activity>
+        <activity class=".DisplayMovie"
+            android:name=".controller.AddEditMovieActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
 
 
 
-        <provider android:name=".Provider"
+        <provider android:name=".model.Provider"
             android:authorities="com.example.megamovies.provider"/>
 
     </application>

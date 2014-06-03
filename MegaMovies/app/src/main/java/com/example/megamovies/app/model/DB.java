@@ -1,4 +1,4 @@
-package com.example.megamovies.app;
+package com.example.megamovies.app.model;
 
 public class DB {
 

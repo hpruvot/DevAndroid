@@ -1,4 +1,4 @@
-package com.example.megamovies.app;
+package com.example.megamovies.app.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,8 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	public static final int VERSION = 1;
 	// Mine du content provider
 	public static final String CONTENT_MINE = "vnd.android.cursor.item/vnd.example.megamovie";
-	
-	
+
 	
 	public DatabaseHelper(Context context) {
 		super(context, BD_NAME, null, VERSION);
@@ -35,6 +34,5 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		Log.i("DatabaseHelper","DatabaseHelper.onUpgrade()");
 		onCreate(db);
 	}
-
 }
 	
