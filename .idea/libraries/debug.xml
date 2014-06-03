@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MegaMovies/app/build/pre-dexed/debug/classes-629474159e50d8ee4238a7693e29a981474d3df3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MegaMovies/app/build/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
