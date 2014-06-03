@@ -14,7 +14,6 @@ public class AddMovieActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_movie);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
