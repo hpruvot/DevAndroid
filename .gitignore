@@ -12,3 +12,9 @@
 .idea/vcs.xml
 
 .idea/workspace.xml
+
+MegaMovies/app/src/main/gen/com/example/megamovies/app/BuildConfig.java
+
+MegaMovies/app/src/main/gen/com/example/megamovies/app/Manifest.java
+
+MegaMovies/app/src/main/gen/com/example/megamovies/app/R.java
